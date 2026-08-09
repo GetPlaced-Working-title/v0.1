@@ -6,10 +6,10 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.dependencies import get_current_admin, get_db
-from app.repositories.user import UserRepository
 from app.repositories.candidate import CandidateRepository
 from app.repositories.job import JobRepository
 from app.repositories.job_match import JobMatchRepository
+from app.repositories.user import UserRepository
 
 router = APIRouter(tags=["admin"])
 

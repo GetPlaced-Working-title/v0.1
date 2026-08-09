@@ -13,7 +13,7 @@ from app.core.dependencies import (
 )
 from app.schemas.common import paginate
 from app.schemas.matching import JobMatchResponse, MatchStatusUpdate
-from app.schemas.search import MatchRequest, MatchResponse
+from app.schemas.search import MatchRequest
 from app.services.matching import MatchingService
 
 router = APIRouter(tags=["matching"])

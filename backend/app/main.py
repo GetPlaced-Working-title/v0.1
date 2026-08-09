@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
-from typing import AsyncGenerator
 
 from fastapi import FastAPI
 
@@ -101,19 +101,19 @@ def create_app() -> FastAPI:
     setup_error_handlers(app)
 
     # Routers
-    from app.routers.health import router as health_router
+    from app.routers.admin import router as admin_router
     from app.routers.auth import router as auth_router
     from app.routers.candidates import router as candidates_router
-    from app.routers.companies import router as companies_router
-    from app.routers.jobs import router as jobs_router
-    from app.routers.resumes import router as resumes_router
-    from app.routers.github import router as github_router
-    from app.routers.portfolios import router as portfolios_router
-    from app.routers.videos import router as videos_router
     from app.routers.certificates import router as certificates_router
-    from app.routers.search import router as search_router
+    from app.routers.companies import router as companies_router
+    from app.routers.github import router as github_router
+    from app.routers.health import router as health_router
+    from app.routers.jobs import router as jobs_router
     from app.routers.matching import router as matching_router
-    from app.routers.admin import router as admin_router
+    from app.routers.portfolios import router as portfolios_router
+    from app.routers.resumes import router as resumes_router
+    from app.routers.search import router as search_router
+    from app.routers.videos import router as videos_router
 
     prefix = f"/api/{settings.api_version}"
 

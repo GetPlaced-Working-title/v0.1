@@ -18,9 +18,9 @@ def generate_candidate_embedding(candidate_id: str) -> dict:
 
 
 async def _generate_candidate_embedding_async(candidate_id: str) -> dict:
+    from app.ai.client import get_gemini_client
     from app.core.database import async_session_factory
     from app.core.qdrant import QdrantService
-    from app.ai.client import get_gemini_client
     from app.repositories.candidate import CandidateRepository
 
     async with async_session_factory() as session:
@@ -56,7 +56,11 @@ async def _generate_candidate_embedding_async(candidate_id: str) -> dict:
                     "name": candidate.name,
                     "headline": candidate.headline,
                     "location": candidate.location,
-                    "years_of_experience": float(candidate.years_of_experience) if candidate.years_of_experience else 0,
+                    "years_of_experience": (
+                        float(candidate.years_of_experience)
+                        if candidate.years_of_experience
+                        else 0
+                    ),
                 },
             )
 
@@ -78,9 +82,9 @@ def generate_job_embedding(job_id: str) -> dict:
 
 
 async def _generate_job_embedding_async(job_id: str) -> dict:
+    from app.ai.client import get_gemini_client
     from app.core.database import async_session_factory
     from app.core.qdrant import QdrantService
-    from app.ai.client import get_gemini_client
     from app.repositories.job import JobRepository
 
     async with async_session_factory() as session:

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import UTC
+
 from app.core.celery_app import celery_app
 from app.core.logging import get_logger
 
@@ -16,10 +18,10 @@ def process_resume(resume_id: str) -> dict:
 
 
 async def _process_resume_async(resume_id: str) -> dict:
-    from app.core.database import async_session_factory
     from app.ai.analyzers.resume import ResumeAnalyzer
-    from app.repositories.base import BaseRepository
+    from app.core.database import async_session_factory
     from app.models.resume import Resume
+    from app.repositories.base import BaseRepository
 
     async with async_session_factory() as session:
         repo = BaseRepository(Resume, session)
@@ -46,8 +48,8 @@ async def _process_resume_async(resume_id: str) -> dict:
             resume.skills_extracted = analysis.get("skills", {})
             resume.processing_status = "completed"
 
-            from datetime import datetime, timezone
-            resume.analyzed_at = datetime.now(timezone.utc)
+            from datetime import datetime
+            resume.analyzed_at = datetime.now(UTC)
             await session.commit()
 
             return {"status": "completed", "resume_id": resume_id}

@@ -39,7 +39,9 @@ class Candidate(Base, TimestampMixin, SoftDeleteMixin):
     profile_summary: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     overall_scores: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     profile_embedding_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
-    last_analyzed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    last_analyzed_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
 
     # Relationships
     user = relationship("User", back_populates="candidate")

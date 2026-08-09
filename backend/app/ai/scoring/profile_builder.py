@@ -94,7 +94,7 @@ class ProfileBuilder:
     def _finalize_skills(self) -> list[dict[str, Any]]:
         """Assign confidence per skill based on its evidence sources."""
         result: list[dict[str, Any]] = []
-        for name, skill in self._skills.items():
+        for _name, skill in self._skills.items():
             sources = skill.pop("sources", [])
             confidence = calculate_confidence(sources)
             skill["confidence"] = confidence.value

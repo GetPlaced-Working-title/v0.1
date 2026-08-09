@@ -25,7 +25,7 @@ class ResumeRepository(BaseRepository[Resume]):
     async def get_primary(self, candidate_id: str) -> Resume | None:
         stmt = select(Resume).where(
             Resume.candidate_id == candidate_id,
-            Resume.is_primary == True,
+            Resume.is_primary,
         )
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()

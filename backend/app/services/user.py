@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.exceptions import ConflictError, NotFoundError
+from app.core.exceptions import NotFoundError
 from app.models.user import User
 from app.repositories.user import UserRepository
 
@@ -28,14 +28,14 @@ class UserService:
 
         user = await self.repo.get_by_clerk_id(clerk_id)
         if user:
-            user.last_login_at = datetime.now(timezone.utc)
+            user.last_login_at = datetime.now(UTC)
             return user
 
         user = await self.repo.create(
             clerk_id=clerk_id,
             email=email,
             role=role,
-            last_login_at=datetime.now(timezone.utc),
+            last_login_at=datetime.now(UTC),
         )
         return user
 

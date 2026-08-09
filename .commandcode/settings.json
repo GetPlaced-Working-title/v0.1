@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Shell(git:*)"
+      "Shell(git:*)",
+      "Shell(git commit -F - <<'EOF' Initial commit: AI Talent Router (GetPlaced) v0.1 Full project scaffold including: - Backend: FastAPI with 19 models, 13 routers, 9 AI analyzers, matching pipeline - Frontend: Next.js 15 with 3 portals, 16+ pages, shadcn/ui components - Infrastructure: Docker Compose (7 services), CI/CD workflows - Docs: Architecture, database, API, AI pipeline, scoring, roadmap Co-authored-by: CommandCodeBot <noreply@commandcode.ai> EOF)",
+      "powershell",
+      "Shell(gh:*)",
+      "Shell(pip:*)",
+      "Shell(ruff:*)",
+      "Shell(npm:*)"
     ],
     "deny": [],
     "defaultMode": "default"

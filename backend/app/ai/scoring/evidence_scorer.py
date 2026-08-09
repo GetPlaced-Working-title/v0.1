@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 
-class EvidenceConfidence(str, Enum):
+class EvidenceConfidence(StrEnum):
     """Confidence levels for a claim based on supporting evidence."""
 
     NONE = "none"

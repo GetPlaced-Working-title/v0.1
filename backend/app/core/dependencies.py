@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Any
 
 from fastapi import Depends, Query
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db as _get_db
 from app.core.security import get_current_user, role_required

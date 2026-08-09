@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import UTC
+
 from app.core.celery_app import celery_app
 from app.core.logging import get_logger
 
@@ -16,12 +18,12 @@ def build_profile(candidate_id: str) -> dict:
 
 
 async def _build_profile_async(candidate_id: str) -> dict:
-    from app.core.database import async_session_factory
     from app.ai.scoring.profile_builder import ProfileBuilder
+    from app.core.database import async_session_factory
     from app.repositories.candidate import CandidateRepository
-    from app.repositories.resume import ResumeRepository
     from app.repositories.github import GitHubProfileRepository
     from app.repositories.portfolio import PortfolioRepository
+    from app.repositories.resume import ResumeRepository
     from app.repositories.skill import SkillRepository
 
     async with async_session_factory() as session:
@@ -73,8 +75,8 @@ async def _build_profile_async(candidate_id: str) -> dict:
                     verified=skill_data.get("verified", False),
                 )
 
-            from datetime import datetime, timezone
-            candidate.last_analyzed_at = datetime.now(timezone.utc)
+            from datetime import datetime
+            candidate.last_analyzed_at = datetime.now(UTC)
             await session.commit()
 
             # Generate embedding

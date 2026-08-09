@@ -67,7 +67,7 @@ async def verify_clerk_token(token: str) -> dict[str, Any]:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=f"Invalid token: {e!s}",
-        )
+        ) from e
 
 
 async def get_current_user(request: Request) -> dict[str, Any]:

@@ -20,7 +20,7 @@ async def health_check() -> dict[str, str]:
 @router.get("/health/ready")
 async def readiness_check() -> dict[str, object]:
     """Check all service connections."""
-    settings = get_settings()
+    get_settings()
     checks: dict[str, object] = {}
 
     # Check database

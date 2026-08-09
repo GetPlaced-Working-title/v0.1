@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Generic, TypeVar
+from typing import Any, TypeVar
 
 from pydantic import BaseModel, Field
 
@@ -14,7 +14,7 @@ class PaginationParams(BaseModel):
     size: int = Field(20, ge=1, le=100)
 
 
-class PaginatedResponse(BaseModel, Generic[T]):
+class PaginatedResponse[T](BaseModel):
     items: list[T]
     total: int
     page: int

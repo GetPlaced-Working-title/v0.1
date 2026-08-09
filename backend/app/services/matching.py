@@ -111,7 +111,9 @@ class MatchingService:
     ) -> tuple[list[JobMatch], int]:
         return await self.match_repo.get_by_job(job_id, offset=offset, limit=limit)
 
-    async def update_match_status(self, match_id: str, status: str, notes: str | None = None) -> JobMatch:
+    async def update_match_status(
+        self, match_id: str, status: str, notes: str | None = None
+    ) -> JobMatch:
         match = await self.match_repo.get_by_id(match_id)
         if not match:
             from app.core.exceptions import NotFoundError

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.dependencies import (
@@ -11,19 +11,18 @@ from app.core.dependencies import (
     get_current_user,
     get_db,
 )
+from app.repositories.project import ProjectRepository
 from app.schemas.candidate import (
     CandidateCreate,
-    CandidateListResponse,
     CandidateResponse,
     CandidateUpdate,
 )
 from app.schemas.common import paginate
-from app.schemas.project import ProjectCreate, ProjectResponse, ProjectUpdate
-from app.schemas.work_history import WorkHistoryCreate, WorkHistoryResponse
+from app.schemas.project import ProjectCreate, ProjectResponse
 from app.schemas.recommendation import RecommendationCreate, RecommendationResponse
 from app.schemas.skill import SkillResponse
+from app.schemas.work_history import WorkHistoryCreate, WorkHistoryResponse
 from app.services.candidate import CandidateService
-from app.repositories.project import ProjectRepository
 
 router = APIRouter(tags=["candidates"])
 
@@ -108,9 +107,7 @@ async def add_project(
     db: AsyncSession = Depends(get_db),
 ):
     """Add a project to candidate profile."""
-    from app.repositories.project import ProjectRepository
     repo = ProjectRepository(db)
-    from app.models.project import Project
     project = await repo.create(candidate_id=candidate_id, **data.model_dump())
     return project
 
@@ -122,7 +119,6 @@ async def list_projects(
     db: AsyncSession = Depends(get_db),
 ):
     """List candidate projects."""
-    from app.repositories.project import ProjectRepository
     repo = ProjectRepository(db)
     return await repo.get_by_candidate(candidate_id)
 
@@ -135,8 +131,8 @@ async def add_work_history(
     db: AsyncSession = Depends(get_db),
 ):
     """Add work history entry."""
-    from app.repositories.base import BaseRepository
     from app.models.work_history import WorkHistory
+    from app.repositories.base import BaseRepository
     repo = BaseRepository(WorkHistory, db)
     return await repo.create(candidate_id=candidate_id, **data.model_dump())
 
@@ -148,8 +144,8 @@ async def list_work_history(
     db: AsyncSession = Depends(get_db),
 ):
     """List candidate work history."""
-    from app.repositories.base import BaseRepository
     from app.models.work_history import WorkHistory
+    from app.repositories.base import BaseRepository
     repo = BaseRepository(WorkHistory, db)
     items = await repo.get_all(
         filters={"candidate_id": candidate_id},
@@ -166,8 +162,8 @@ async def add_recommendation(
     db: AsyncSession = Depends(get_db),
 ):
     """Add a recommendation."""
-    from app.repositories.base import BaseRepository
     from app.models.recommendation import Recommendation
+    from app.repositories.base import BaseRepository
     repo = BaseRepository(Recommendation, db)
     return await repo.create(candidate_id=candidate_id, source="manual", **data.model_dump())
 

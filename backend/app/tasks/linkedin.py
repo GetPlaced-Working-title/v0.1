@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import UTC
+
 from app.core.celery_app import celery_app
 from app.core.logging import get_logger
 
@@ -16,10 +18,10 @@ def analyze_linkedin(linkedin_id: str) -> dict:
 
 
 async def _analyze_linkedin_async(linkedin_id: str) -> dict:
-    from app.core.database import async_session_factory
     from app.ai.analyzers.linkedin import LinkedInAnalyzer
-    from app.repositories.base import BaseRepository
+    from app.core.database import async_session_factory
     from app.models.linkedin import LinkedInExport
+    from app.repositories.base import BaseRepository
 
     async with async_session_factory() as session:
         repo = BaseRepository(LinkedInExport, session)
@@ -45,8 +47,8 @@ async def _analyze_linkedin_async(linkedin_id: str) -> dict:
             linkedin.analysis = analysis
             linkedin.scores = analysis.get("scores", {})
 
-            from datetime import datetime, timezone
-            linkedin.analyzed_at = datetime.now(timezone.utc)
+            from datetime import datetime
+            linkedin.analyzed_at = datetime.now(UTC)
             linkedin.processing_status = "completed"
             await session.commit()
 

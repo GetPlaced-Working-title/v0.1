@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, UploadFile, File
+from fastapi import APIRouter, Depends, File, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.dependencies import get_current_candidate, get_current_user, get_db
-from app.core.storage import StorageService
 from app.core.exceptions import NotFoundError
-from app.schemas.certificate import CertificateCreate, CertificateResponse
-from app.repositories.base import BaseRepository
+from app.core.storage import StorageService
 from app.models.certificate import Certificate
+from app.repositories.base import BaseRepository
+from app.schemas.certificate import CertificateCreate, CertificateResponse
 
 router = APIRouter(tags=["certificates"])
 

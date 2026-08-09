@@ -104,7 +104,7 @@ class QdrantService:
         filter_conditions: dict[str, Any] | None = None,
     ) -> list[dict[str, Any]]:
         """Search for similar vectors."""
-        from qdrant_client.models import Filter, FieldCondition, MatchValue
+        from qdrant_client.models import FieldCondition, Filter, MatchValue
 
         query_filter = None
         if filter_conditions:

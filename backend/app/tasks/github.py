@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import UTC
+
 from app.core.celery_app import celery_app
 from app.core.logging import get_logger
 
@@ -16,10 +18,10 @@ def analyze_github(profile_id: str) -> dict:
 
 
 async def _analyze_github_async(profile_id: str) -> dict:
-    from app.core.database import async_session_factory
     from app.ai.analyzers.github import GitHubAnalyzer
-    from app.repositories.base import BaseRepository
+    from app.core.database import async_session_factory
     from app.models.github_profile import GitHubProfile
+    from app.repositories.base import BaseRepository
 
     async with async_session_factory() as session:
         repo = BaseRepository(GitHubProfile, session)
@@ -42,9 +44,9 @@ async def _analyze_github_async(profile_id: str) -> dict:
             profile.repositories = analysis.get("repository_data", [])
             profile.primary_languages = analysis.get("primary_languages", {})
 
-            from datetime import datetime, timezone
-            profile.analyzed_at = datetime.now(timezone.utc)
-            profile.last_fetched_at = datetime.now(timezone.utc)
+            from datetime import datetime
+            profile.analyzed_at = datetime.now(UTC)
+            profile.last_fetched_at = datetime.now(UTC)
             profile.processing_status = "completed"
             await session.commit()
 

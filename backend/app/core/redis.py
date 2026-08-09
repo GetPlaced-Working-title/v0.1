@@ -79,7 +79,8 @@ class RedisCache:
             return cached
 
         if callable(factory):
-            value = await factory() if hasattr(factory, "__await__") or hasattr(factory, "__call__") else factory
+            is_awaitable = hasattr(factory, "__await__")
+            value = await factory() if is_awaitable or callable(factory) else factory
             if callable(value):
                 value = await value()
         else:

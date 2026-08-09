@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Any, Generic, Sequence, Type, TypeVar
+from collections.abc import Sequence
+from datetime import UTC
+from typing import Any, TypeVar
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -12,10 +14,10 @@ from app.core.database import Base
 ModelT = TypeVar("ModelT", bound=Base)
 
 
-class BaseRepository(Generic[ModelT]):
+class BaseRepository[ModelT: Base]:
     """Generic repository with CRUD operations."""
 
-    def __init__(self, model: Type[ModelT], session: AsyncSession) -> None:
+    def __init__(self, model: type[ModelT], session: AsyncSession) -> None:
         self.model = model
         self.session = session
 
@@ -72,8 +74,8 @@ class BaseRepository(Generic[ModelT]):
         if instance is None:
             return False
         if hasattr(instance, "deleted_at"):
-            from datetime import datetime, timezone
-            instance.deleted_at = datetime.now(timezone.utc)
+            from datetime import datetime
+            instance.deleted_at = datetime.now(UTC)
         else:
             await self.session.delete(instance)
         await self.session.flush()

@@ -8,8 +8,6 @@ from __future__ import annotations
 
 from typing import Any
 
-from app.ai.prompts.red_flag import RED_FLAG_DETECTION_PROMPT
-from app.ai.scoring.evidence_scorer import clamp_score
 from app.core.logging import get_logger
 
 logger = get_logger(__name__)
@@ -73,7 +71,7 @@ class RedFlagDetector:
             else:
                 seen[sig] = [(item.get("title") or item.get("company") or "unknown")]
 
-        for sig, owners in seen.items():
+        for _sig, owners in seen.items():
             if len(owners) > 1:
                 flags.append(
                     {

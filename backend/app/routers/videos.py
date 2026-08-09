@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, UploadFile, File
+from fastapi import APIRouter, Depends, File, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.dependencies import get_current_candidate, get_current_user, get_db
-from app.core.storage import StorageService
 from app.core.exceptions import NotFoundError
-from app.schemas.video import VideoResponse, VideoUploadResponse
-from app.repositories.base import BaseRepository
+from app.core.storage import StorageService
 from app.models.video import Video
+from app.repositories.base import BaseRepository
+from app.schemas.video import VideoResponse, VideoUploadResponse
 
 router = APIRouter(tags=["videos"])
 

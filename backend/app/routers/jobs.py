@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.dependencies import PaginationParams, get_current_recruiter, get_current_user, get_db
 from app.schemas.common import paginate
-from app.schemas.job import JobCreate, JobListResponse, JobResponse, JobUpdate
+from app.schemas.job import JobCreate, JobResponse, JobUpdate
 from app.services.job import JobService
 
 router = APIRouter(tags=["jobs"])

@@ -40,7 +40,7 @@ class SkillGapAnalyzer:
         candidate_skills: list[str],
     ) -> dict[str, Any]:
         """Deterministic fallback: flag required skills not in candidate set."""
-        required = set((job_requirements.get("required_skills") or []))
+        required = set(job_requirements.get("required_skills") or [])
         candidate = {s.lower() for s in candidate_skills}
         missing = sorted(r for r in required if r.lower() not in candidate)
         coverage = (len(required) - len(missing)) / max(1, len(required))

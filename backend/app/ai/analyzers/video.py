@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 import google.generativeai as genai
 from sqlalchemy.ext.asyncio import AsyncSession
 
