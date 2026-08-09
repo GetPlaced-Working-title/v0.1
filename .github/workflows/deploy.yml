@@ -1,0 +1,19 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [backend, frontend]
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Coolify
+        run: |
+          echo "Deploy trigger - configure Coolify webhook or SSH deployment here"
+          # curl -X POST "${{ secrets.COOLIFY_WEBHOOK_URL }}"

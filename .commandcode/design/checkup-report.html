@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>GetPlaced - Checkup Report</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<style>
+		body { font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+		.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+		.report-section { border: 1px solid #222226; background: #0a0a0b; position: relative; }
+		.corner-box { position: absolute; width: 20px; height: 20px; border: 1px solid #222226; background: #000; }
+	</style>
+</head>
+<body class="bg-black text-[#fafafa]">
+	<main class="mx-auto w-full max-w-6xl px-5 py-8 md:px-10 md:py-12">
+		<header class="report-section mb-8 p-6 md:p-8">
+			<div class="corner-box left-0 top-0 -translate-x-1/2 -translate-y-1/2"></div>
+			<div class="corner-box right-0 top-0 translate-x-1/2 -translate-y-1/2"></div>
+			<div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+				<div>
+					<div class="mono mb-2 text-xs tracking-widest text-[#666]">// CHECKUP</div>
+					<h1 class="text-4xl font-bold tracking-tight md:text-6xl">GetPlaced</h1>
+				</div>
+				<div class="mono text-left text-xs text-[#666] md:text-right">
+					<div>COMMANDCODE REPORT</div>
+					<div class="text-[#444]">2026-08-06</div>
+				</div>
+			</div>
+		</header>
+
+		<section class="report-section mb-8 p-6 md:p-8">
+			<div class="corner-box left-0 top-0 -translate-x-1/2 -translate-y-1/2"></div>
+			<div class="corner-box right-0 top-0 translate-x-1/2 -translate-y-1/2"></div>
+			<div class="grid gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+				<div>
+					<div class="mono mb-2 text-xs tracking-widest text-[#666]">// OVERALL</div>
+					<div class="text-6xl font-bold tracking-tight md:text-7xl">38</div>
+					<div class="mt-1 text-lg text-[#666]">/ 60</div>
+					<div class="mt-4 inline-flex border border-[#fbbf24]/30 bg-[#fbbf24]/10 px-3 py-1 text-sm text-[#fbbf24]">NEEDS WORK</div>
+				</div>
+				<div>
+					<div class="mono mb-3 text-xs tracking-widest text-[#666]">// TL;DR</div>
+					<p class="text-sm leading-6 text-[#a0a0a0]">The composition is correct and the code structure is clean. But the product is not ready to ship: iOS Safari breaks form inputs, there is no RTL support, accessibility is absent, and 80% of pages lack loading, empty, or error states.</p>
+					<p class="mt-4 text-sm leading-6 text-[#fbbf24]">Fix input sizes, add RTL support, wire in state coverage, and add basic a11y before launch.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="report-section mb-8 p-6 md:p-8">
+			<div class="mono mb-6 text-xs tracking-widest text-[#666]">// HEURISTIC SCORES</div>
+			<div class="overflow-x-auto">
+				<table class="w-full min-w-[720px] border-collapse text-sm">
+					<thead>
+						<tr class="border-b border-[#222226] text-left mono text-xs text-[#666]">
+							<th class="py-3 pr-4 font-normal">#</th>
+							<th class="py-3 pr-4 font-normal">HEURISTIC</th>
+							<th class="py-3 pr-4 font-normal">SCORE</th>
+							<th class="py-3 font-normal">KEY FINDING</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="border-b border-[#1a1a1e]"><td class="py-4 pr-4 text-[#555]">1</td><td class="py-4 pr-4 text-[#fafafa]">Intentionality</td><td class="py-4 pr-4 text-[#fbbf24]">7/10</td><td class="py-4 text-[#a0a0a0]">Default Tailwind palette; no distinct brand voice</td></tr>
+						<tr class="border-b border-[#1a1a1e]"><td class="py-4 pr-4 text-[#555]">2</td><td class="py-4 pr-4 text-[#fafafa]">Readability</td><td class="py-4 pr-4 text-[#fbbf24]">8/10</td><td class="py-4 text-[#a0a0a0]">iOS Safari auto-zoom on all form inputs (text-sm)</td></tr>
+						<tr class="border-b border-[#1a1a1e]"><td class="py-4 pr-4 text-[#555]">3</td><td class="py-4 pr-4 text-[#fafafa]">Usability</td><td class="py-4 pr-4 text-[#ef4444]">5/10</td><td class="py-4 text-[#a0a0a0]">Missing loading/empty/error states on 80% of pages</td></tr>
+						<tr class="border-b border-[#1a1a1e]"><td class="py-4 pr-4 text-[#555]">4</td><td class="py-4 pr-4 text-[#fafafa]">Responsiveness</td><td class="py-4 pr-4 text-[#ef4444]">5/10</td><td class="py-4 text-[#a0a0a0]">No RTL support; fixed sidebar consumes mobile width</td></tr>
+						<tr class="border-b border-[#1a1a1e]"><td class="py-4 pr-4 text-[#555]">5</td><td class="py-4 pr-4 text-[#fafafa]">Speed</td><td class="py-4 pr-4 text-[#34d399]">10/10</td><td class="py-4 text-[#a0a0a0]">Clean Next.js architecture, no image bloat, React Query caching</td></tr>
+						<tr class="border-b border-[#1a1a1e]"><td class="py-4 pr-4 text-[#555]">6</td><td class="py-4 pr-4 text-[#fafafa]">Accessibility</td><td class="py-4 pr-4 text-[#ef4444]">3/10</td><td class="py-4 text-[#a0a0a0]">No aria-labels, color-only indicators, no reduced-motion</td></tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="report-section mb-8 p-6 md:p-8">
+			<div class="mono mb-6 text-xs tracking-widest text-[#666]">// PRIORITY ISSUES</div>
+			<div class="space-y-5">
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#f43f5e]">P0</div>
+					<h2 class="mb-2 text-lg font-semibold">No RTL / text direction support</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">Every component uses mr-/ml-/pl-/pr- instead of logical me-/ms-/ps-/pe-. The product cannot render Arabic, Hebrew, Farsi, or Urdu.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Swap physical CSS to logical properties; add dir="rtl" support to layout</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#f43f5e]">P0</div>
+					<h2 class="mb-2 text-lg font-semibold">iOS Safari input zoom</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">Every Input, select, and textarea uses text-sm (14px). On iOS Safari below 640px, any focused input with font-size < 16px triggers viewport zoom.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: text-base sm:text-sm on all form controls</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#f43f5e]">P0</div>
+					<h2 class="mb-2 text-lg font-semibold">Missing state coverage</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">All pages show only the ideal state. No loading spinners, no error boundaries wired in, no empty states with teaching copy.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Add ErrorBoundary to layouts, wire LoadingPage to data-dependent routes, write real empty state copy</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#fbbf24]">P1</div>
+					<h2 class="mb-2 text-lg font-semibold">Accessibility gaps</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">No aria-labels on form fields. Color-only indicators for confidence and match scores. No reduced-motion handling. FileUpload id collision.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Add aria-labels, icons to score indicators, prefers-reduced-motion queries, unique upload IDs</div>
+				</article>
+				<article class="border border-[#2a1d22] bg-[#110b0d] p-5">
+					<div class="mono mb-2 text-xs text-[#fbbf24]">P2</div>
+					<h2 class="mb-2 text-lg font-semibold">Cookie-cutter visual identity</h2>
+					<p class="mb-4 text-sm leading-6 text-[#a0a0a0]">Neutral Tailwind grays throughout. No distinct brand hue, no authored palette decisions.</p>
+					<div class="border-l border-[#fbbf24] pl-4 text-sm leading-6 text-[#fbbf24]">FIX: Tint neutrals toward a brand hue via HSL; establish accent color that signals "evidence-based hiring"</div>
+				</article>
+			</div>
+		</section>
+
+		<section class="report-section mb-8 p-6 md:p-8">
+			<div class="mono mb-6 text-xs tracking-widest text-[#666]">// NEXT MODES</div>
+			<div class="flex flex-wrap gap-2">
+				<span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]">/design responsive</span>
+				<span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]">/design surface</span>
+				<span class="border border-[#333] px-3 py-1 text-sm text-[#a0a0a0]">/design recolor</span>
+			</div>
+		</section>
+
+		<footer class="mono py-8 text-center text-xs tracking-widest text-[#444]">
+			Generated with CommandCode - 2026-08-06
+		</footer>
+	</main>
+</body>
+</html>

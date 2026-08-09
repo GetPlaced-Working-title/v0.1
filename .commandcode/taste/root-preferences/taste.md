@@ -1,0 +1,11 @@
+# Root Preferences
+- Prefers structured, milestone-based development over "build everything at once" approaches. Implement feature by feature, completing and testing each milestone before moving to the next. Confidence: 0.95
+- Uses CLAUDE.md or equivalent context files to persist project architecture, conventions, and commands across sessions. Confidence: 0.9
+- Demands production-quality code, explicitly contrasts this against "school project" quality. Confidence: 0.95
+- Strongly prefers evidence-based evaluation over keyword matching or surface-level signals. Systems should verify claims against multiple data sources rather than trusting self-reported information at face value. Confidence: 0.95
+- Prefers modular, pipeline-based AI architecture where each AI task is independent, cacheable, and produces structured JSON. Avoids monolithic prompts trying to do everything at once. Confidence: 0.9
+- Values multi-dimensional scoring over single aggregate scores. Every evaluated item should carry its own value, evidence strength, and relevance. Confidence: 0.9
+- Extremely cost-conscious in infrastructure choices. Prefers self-hosting services, choosing cost-effective providers (e.g., Cloudflare R2 for zero egress), and minimizing AI inference costs by using deterministic systems for non-reasoning tasks. Confidence: 0.95
+- Prefers flagging inconsistencies and gaps rather than automatically penalizing. There may be valid explanations, so surface concerns for human review instead of deducting points. Confidence: 0.85
+- Quality over quantity principle: values well-documented, impactful work over large volumes of shallow work. Confidence: 0.9
+- Frequent model switcher — uses different models for different task contexts (lightweight for sub-agents, stronger for main orchestration). Confidence: 0.8
